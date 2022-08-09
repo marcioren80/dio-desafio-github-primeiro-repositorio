@@ -1,0 +1,118 @@
+Introdução ao Git e ao GitHub
+
+Entendendo o que é Git e sua importância
+É um software web que mantém versões de códigos distribuído, permite a colaboração entre desenvolvedores.
+Git e GitHub não são a mesma coisa.
+
+Benefícios do uso desses repositórios de código:
+1- Controle de versão
+2- Armazenamento em nuvem
+3- Trabalho em equipe
+4- Melhorar seu código
+5- Reconhecimento
+
+Comandos básicos para um bom desempenho no terminal
+Comandos no Windows que são Unix like.
+del no windows deleta apenas arquivos
+Para deletar pastas/diretórios no Windows usa o rmdir
+Para deletar pastas/diretórios no Linux usa rm -rf 
+
+Instalação do git
+# add-apt-repository ppa:git-core/ppa 
+# apt update; apt install git
+
+No Windows baixar o executável.
+
+Entendendo como o Git funciona
+- SHA1
+Algoritmo de encriptação. A encriptação gera um conjunto de caracteres identificador de 40 dígitos.
+Para encriptar arquivos use no bash do Git:
+$ openssl sha1 <arquivo.txt>
+
+- Objetos fundamentais
+Blobs: tem o tipo, o hash e o conteúdo do objeto (arquivo).
+echo ‘conteudo’ | git hash-object --stdin
+echo -e ‘blob 9\0conteudo’ | openssl sha1
+
+Trees
+Armazena blobs.
+
+Commits
+Aponta para Trees, o hash do Commit vai mudar se alterar qualquer coisa abaixo (tree ou blob).
+
+- Sistema Distribuído
+É um sistems distribuído porque várias pessoas podem acessar o mesmo arquivo.
+
+
+Chave SSH e Token
+Criar o par de chaves SSH no gitbash e no Linux: 
+Abre o Git bash e digita:
+$ ssh-keygen -t ed25519 -C marcioren80@gmail.com
+
+Guarde o local onde o par de chaves está sendo criado.
+No Windows ficou salvo em: C:\Users\Renato\.ssh
+No Linux /home/marcio/.ssh/
+
+
+Ativar o agente ssh no bash:
+# eval $(ssh-agent -s)
+
+Adicionar a ssh-key
+# ssh-add id_ed25519
+
+$ git config --global credential.helper store
+
+…or create a new repository on the command line
+$ echo "# git_intro" >> README.md
+$ git init
+$ git add README.md
+$ git commit -m "first commit"
+$ git branch -M main
+$ git remote add origin git@github.com:marcioren80/git_intro.git
+$ git push -u origin main
+ 
+ …or push an existing repository from the command line
+$ git remote add origin git@github.com:marcioren80/git_intro.git
+$ git branch -M main
+$ git push -u origin main
+
+Adicionando o Token de segurança (se for usar token no lugar de ssh)
+No site do github: Developer Settings –> Personal access tokens
+Marca “Repo”, gera o token e salva o arquivo.
+
+Para clonar seu repositório
+$ git clone <caminho ssh>
+
+Criar uma configuração inicial básica
+Necessário para começar a salvar arquivos no repositório local
+$ git config --global user.email marcioren80@gmail.com
+$ git config --global user.name "marcioren80"
+
+Ver as configurações do Git
+$ git config --list
+
+Enviar os arquivos locais para o github
+$ git add * ou $ git add <nome arquivo>
+Aqui o arquivo está na área de staging
+
+$ git commit -m “descrição”
+Prepara o arquivo para salvar/enviar para o depositório remoto.
+
+$ git status
+Vai mostrar se há algo para enviar ou salvar.
+
+"Empurrar" o repositório local para o remoto
+Adicionando o remote (repositório remoto)
+$ git remote add origin https://github.com/marcioren80/dio.aulas.git
+$ git remote add origin https://github.com/marcioren80/dio.aulas
+
+$ git push origin master
+
+$ git push origin main
+
+Baixar códigos de outros devs
+$ git clone <url>
+
+Resolvendo conflitos
+Conflito de merge, quando há alterações na mesma linha entre dois desenvolvedores.
+
